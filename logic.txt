@@ -1,0 +1,283 @@
+6.4)
+L = ({0,-},{<,P},N) N(0) = 0, N(-) = 2, N(<) = 2, N(P)=1
+E = (Z,interp)
+
+interp(0) = integer 0
+interp(-) = integer subtraction
+interp(<) = lesser than relation in integer set
+interp(P) = {z in Z such that z = 2z' for any z' in Z}
+a: V -> Z an attribution in E, such that a(xi) = i if i even, or -2i if i odd
+a) Calculate t[a]E
+  i) 0 - x2[a] = 0[a] - x2[a] = 0 - 2 = -2
+  ii) 0 - (x2 - x1) [a] = 0[a] - (x2 - x1)[a] = 0 - (2 - (-2)) = -4
+b) Prove using induction in L-terms, that for each term t, there exists z in Z t[a] = 2z
+
+Q(t) is a condition established over the terms of languange L and is defined as such: 
+        Q(t) : ∃z∈Z: t[a]E = 2z
+
+ i) Q(xi) = i if i|2
+            -2i if i is not divisible by 2
+       From this we know know that there will always be z in Z such that 2z = t[xi] if i is even
+       We also know that if i is odd, t[a] will be -2(i) which is the same as 2*(-i), -i ∈ Z
+       ∴ the condition is true for any variable Q.E.D.
+ ii) Q(0) = 0
+         0 is the 0 of the Integer Ring, thus we know that, for multiplication, ∀a∈Z, a*0z = 0z*a = 0z
+	 ∴ This condition is true for 0 Q.E.D.
+
+ iii) Q(t0)· Q(t1) ⊃ Q(t0-t1), ∀ t0,t1 ∈ L-terms
+       From the hypothesis, we hold that Q(t0-t1) = 2*z0 - 2*z1 = 2 * (z0 - z1)
+       z0-z1 is a subtraction within the integer set, thus it is an integer and the result we obtained is in the form 2*z
+       ∴ We hold that Q(t0-t1) is true ∀ t0,t1 ∈ L-terms Q.E.D.
+∴ From the Principle of Structural Induction over the L-Terms, we hold that the condition Q(t) is true ∀ t ∈ L-Terms. Q.E.D.
+
+6.5)
+L-Arit and E-Arit
+a1(xi) = 0
+a2(xi) = i
+φ,∴,ψ,Γ,σ,λ,θ,α,Ω,∀,∃,∈,⊃,¬,·,≡,∨,⊥,⊨,⊢,※
+
+a)
+  i) ¬⊥[a1] = 1
+     ¬⊥[a2] = 1
+  ii) x1 = x2[a1] => x1[a1] = x2[a1] => 0 = 0 => from the interpretation of = we hold that this is true, thus => 1
+      x1 = x2[a2] => x1[a2] = x2[a2] => 1 = 2 => from the interpretation of = we hold that this is false, thus => 0
+  iii) ¬(x1 = x1)[a1] = ¬(0 = 0) => from the interpretation of = we hold that this is true, thus the negation => 0
+       ¬(x1 = x1)[a2] = ¬(1 = 1) => from the interpretation of = we hold that this is true, thus the negation => 0
+  iv) (x1 < x2) ⊃ (s(x1) < s(x2))[a1] = (0 < 0) ⊃ ( 1 < 1) = from the interpretation of < we hold that 0 < 0 is false thus the implication is true = 1
+      (x1 < x2) ⊃ (s(x1) < s(x2))[a2] = (1 < 2) ⊃ ( 2 < 3) = from the interpretation of < we hold that 1 < 2 is true and 2 < 3 is true thus the implication is true = 1
+
+ b)
+  i) ¬⊥[a1(x1 n)] = 1
+     ¬⊥[a2(x1 n)] = 1
+  ii) x1 = x2[a1(x1 n)] => n = 0 Ergo when n = 0, x1 = x2
+      x1 = x2[a2(x1 n)] => n = 2 Ergo, when n = 2, x1 = x2
+  iii) not (x1 = x1)[a1(x1 n)] = not( n = n) => what this is saying is that n is diferent from n, ※
+      not (x1 = x1)[a2(x1 n)] = not(n=n) => same as above
+  iv) (n < 0) -> ((n+1) < 1) = true for any n
+      (n < 2) -> ((n+1) < 3) = true for any n
+ c)
+ i)(all x1 not absurd)[a1] is trivially true for x1 is not in LIG(phi)
+   (all x1 not absurd)[a2] is trivially true for x1 in not in LIG(phi)
+   (exists x1 not absurd)[a1] is trivially true for x1 is not in LIG(phi)
+   (exists x1 not absurd)[a2] is trivially true for x1 is not in LIG(phi)
+ ii) (all x1 (x1 = x2))[a1] = 1
+   <=> (all d in D) (x1 = x2)[a1(x1 d)] = 1 => d = 0 false
+     (all x1 (x1 = x2))[a2] = 1
+   <=> (all d in D) (x1 = x2)[a2(x1 d)] = 1 => all d = 2 false
+     (exists x1 (x1 = x2)) [a1] = 1
+   <=> (exists d in D) (x1 = x2)[a1(x1 d)] = 1 => exists d d = 0 true
+     (exists x1 (x1 = x2)) [a2] = 1
+   <=> (exists d in D) (x1 = x2) [a2(x1 d)] = 1 => exists d d = 2 true
+ iii)(all x1 not(x1=x1))[a1] = 1
+   <=> (all d in D) not(x1 = x1)[a1(x1 d)] = 1 => d =/= d false
+     (all x1 not(x1=x1))[a2] = 1
+   <=> (all d in D) not(x1 = x1)[a2(x1 d)] = 1 => d =/= d false
+     (exists x1 not(x1 = x1))[a1] = 1
+   <=> (exists d in D) not(x1 = x1)[a1(x1 d)] = 1 => all d = d => false
+     (exists x1 not(x1 = x1))[a2] = 1
+   <=> (exists d in D) not(x1 = x1)[a2(x1 d)] = 1 => all d = d => false
+ iv) (all x1 ((x1 < x2) -> (s(x1) < s(x2))))[a1] = 1
+   <=> (all d in D) phi[a1(x1 d)] = d < 0 -> d+1 < 1 => D is N0 thus is trivially true
+     (all x1 phi)[a2] = 1
+   <=> (all d in D) phi[a2(x1 d)] = d < 2 -> d+1 < e => true
+     (exists -> true
+     true
+ d)
+  i) E |= not absurd if E |= not absurd[a] -> not absurd[a] = 1
+            this is true for any a ergo E|=not absurd
+  ii) E |/= x1 = x2
+      for E |/= x1=x2[ai] since x1=x2[ai] = false
+  iii) E |/= not (x1 = x1)
+       for E |/= not(x1 = x1)[a] for example for a1
+  iv) E|= phi
+       for E|= phi[a] since phi[a] = 1 for any a
+ e)
+   i) |= not absurd <=> E |= not absurd in any structure, true
+            i) is universally valid
+   ii) and iii) are not valid in E-arit, thus are not universally valid
+   iv) let us suppose an E-arit such that S(t)is interpreted as the function of predecessor, being defined by:
+   S(t): N0 -> N0
+         x |-> (x > 0 -> x-1) . (x = 0 -> 0)
+   in which case, let us suppose an atribution a that replaces x with 0 if i odd and 1 if i even 
+    (x1 < x2) -> (S(x1) < S(x2))
+    (0 < 1) -> (0 < 0)
+    in which case we have that (0 < 1) is true yet (0 < 0) is false
+    Ergo iv) is not universally valid in L-Arit.
+
+  Thus only i) is universally valid.
+
+6.6
+P = {z in Z: z = 2z' for one z' in Z}
+a: V -> Z  a(xi) = i if i even, and a(xi) = -2i if i odd
+  i) <(x1 - x2,0)[a] = 1
+     <(-2 - 2, 0) = <(-4, 0)
+     (-4,0) does belong to the < relation, thus this is true
+    E |= phi[a]
+    However, E |/= p, let us consider a2: V->Z such that a2(x) = 0 for any x in V
+    in this case, <(x1 - x2,0)[a2] = 1 if and only if <(x1[a2] - x2[a2],0[a2]),
+yet this results in <(0,0) ※
+    phi is, thus, not valid in E and, consequently, it is not universally valid in L
+  ii) P(x2)[a] = 1
+      P(x2[a]) = P(2)
+      P(2) is true if and only if there exists an element z' in Z such that 2 = 2z', in which case let us compute this equation in Z[x]:
+                                       2 = 2z' <=> 2'*2 = 2'*2z' <=> 1 = z'
+     thus E |= phi[a]
+      E |= phi if E |= phi[a] for any a
+     let us suppose an atribution a that is defined as a2(x) = 1 for any x in V
+     in which case we have that P(x2)[a2] = P(x2[a2]) = P(1), in which case let us compute that same equation in Z[x]:
+                                       1 = 2z' <=> 2'*1 = 2'*2z' <=> 1/2 = z' ※
+       1/2 does not belong to Z,
+      thus phi is not valid in E, and, thus, it is not universally valid in L.
+   iii) for all x2 P(x2)[a] = 1
+     <=> (for all d in Z) P(x2)[a(x2 d)] = 1
+      in which case we have (for all d in Z) P(d) = 1
+      however there exists one d in Z such that P(d) is not true, which is when d = 1
+      ergo E |/= phi[a]
+      thus E |/= phi and phi is not universally valid in L.
+   iv) x0 < 0 OR not(x0 < 0)[a] = 1
+       x0[a] < 0 OR not(x0[a] < 0) = 0 < 0 OR not (0 < 0)
+      0 is not lesser than 0 for it is equal so we have a computation of the sorts: 0 OR 1 -> 1
+      thus, E |= phi[a]
+       Note that for any atribution, phi will always be true due to way the functions NOT and OR are defined, thus, not only is phi valid in this Structure E, it is universally valid in L
+   v) (exists x0) such that (P(x0) AND NOT(P(0-x0)))[a] = 1
+    <=> (exists d in Z) (P(x0) AND NOT(P(0-x0)))[a(x0 d)] = 1
+    <=> (exists d in Z) (P(d) AND NOT(P(0-d))) = 1
+                       well then let us simplify this expression
+		          d = 2z' AND -d =/= 2x' ※
+            This is a contradiction for we are claiming that d is an even number and we are also saying it's inverse (symmetric) is an odd number.
+       thus E |/= phi[a] => E |/= phi => |/= phi
+  vi)  (ALL x1)(ALL x2) ((x1 < x2) -> (0 < (x2 - x1)))[a] = 1
+   <=> (ALL d in Z) (ALL d' in Z) ((x1 < x2) -> (0 < (x2 - x1)))[a(x1 d)][a(x2 d')] = 1
+   <=> (ALL d in Z) (ALL d' in Z) ((d < d') -> (0 < (d' - d))) = 1
+         let us verify this by simplifying in separate cases.
+     in the case d' = 0
+      (d < 0) -> (0 < (0 - d))
+      if d >= 0, the implication is trivially true
+      if d < 0, then the implication is true for the symmetric of a negative number is a positive number (that is greater than 0)
+      True for d' = 0 Q.E.D.
+     in the case of d' > 0 
+      if d > 0
+           i)  d' = 1
+	        a) d = 1
+		    (1 < 1) -> (0 < (1 - 1)), the implication is trivially true
+		b) Q(d) => Q(d+1)
+		    (d < 1) -> (0 < (1 - d)) => (d+1 < 1) -> (0 < (1 - d))
+		   d < 1 is trivially false, thus d+1 is false as well, ∴Q(d+1) is true
+		from a and b, from the Principle of Mathematical Induction when d' = 1 phi is true Q.E.D.
+	   ii) C(d') => C(d'+1)
+	       a) d = 1
+	            (1 < d') -> (0 < (d' - 1)) => (1 < d'+1) -> (0 <(d'+1 - 1))
+		    since d' is greater than one we hold that d' - 1 is greater than 1 and thus greater than 0, knowing that it's trivially true that the same verifies for d'+1, thus this relation is true
+               b) C(d) => C(d+1)
+	            (d < d') -> (0 < (d' - d)) => (d+1 < d'+1) -> (0 < (d'+1 - d+1))
+		    since d' > d, d' - d is closed under Natural subtraction, from which we can trivially say the same verifies for d+1 d'+1
+	       from a and b, from the Principle of Mathematical Induction C(d'+1) is true Q.E.D.
+	   from i) and ii), from the Principle of Mathematical Induction we prove phi is true when d > 0 and d' > 0Q.E.D.
+      if d < 0
+           i) d' = -1
+	       a) d = -1
+	           (-1 < -1) -> (0 < ((-1) - (-1))
+		   since -1 >= -1 this implication is trivially true
+               b) C(d) => C(d-1)
+	           (d < -1) -> (0 < (-1 - d)) => ((d-1) < -1) -> (0 < (-1 - (d-1)))
+		   Following the rules of subtraction under the negative numbers, we can safely assume that C(d) does indeed imply C(d-1)
+              from a and b, using the Principle of Structural Induction over Negative Numbers, we prove phi is true for d' = -1 Q.E.D.
+           ii) C(d') => C(d'-1)
+               a) d = -1
+	           (-1 < d') -> (0 < (d' - (-1)) => (-1 < (d'-1))->(0 < ((d'-1) - (-1)))
+		   trivially true for -1 is never lesser than a negative number different than -1, thus the same can be said of d'-1
+               b) C(d) => C(d-1)
+	          (d < d') -> (0 < (d' - d)) => ((d-1) < (d'-1)) -> (0 < ((d'-1) - (d-1)))
+		    the hypothesis is true and from this follows that for d-1 C is true.
+               from a and b, using the Principle of Structural Induction over Negative Numbers, we prove phi is true for d'-1
+          from i) and ii), using the Principle of Structural Induction over Negative Numbers, we prove phi is true for any d < 0 and d' < 0
+     now let us verify for other cases such as d > 0 and d' < 0, which is trivially true for d is not lesser than d'
+     d < 0 and d' > 0, is trivially true due to the - -(negative number)
+     d = 0 and d' < 0, trivially true due to 0 > negative number
+     d = 0 and d' > 0  is true 
+     thus E |= phi[a]
+     since all the variable are connected  E |= phi, from the same manner we prove that for all structures, thus |= phi     
+
+6.12
+
+b
+ii)
+modelo de GAMMA U {R(c1,c2)] E = (0,-)
+E |= R(c1,c2) sse (c1,c2) in R
+para tal vamos definir c1 = c2 = 0
+ assim temos que E |= R(c1,c2), assim é modelo de GAMMA U {R(c1,c2)}
+iii)
+modelo de GAMMA U {NOT R(c1,c2)} E = (N0,-}
+para tal vamos definir c1 = 1, c2 = 2
+
+b)
+i) GAMMA |= R(c1,c1)
+Let E = (D,-) and a an arbitrary atribution
+Let us suppose E |= GAMMA
+We wish to prove E |= R(c1,c1) that is (c1,c1) in R
+Since we know, from hypothesis E |= R(x1,x1) that is to say for all d in D (d,d) in R, since c1 in D then it holds that (c1,c1) in R
+Thus E |= R(c1,c1)
+ii) GAMMA, R(c1,c2) |= R(c2,c1)
+Let E = (D,-) and a an arbitrary atribution
+Let us suppose E |= GAMMA and E |= R(c1,c2) that is to say (c1,c2) in R we wish to prove E |= R(c2,c1), that is (c2,c1) in R
+from the hypothesis, namely phi2, it holds that (for all d)(for all d') in D R(d,d') -> R(d',d)
+since c1 and c2 in D and R(c1,c2) it stands to reason that R(c2,c1)
+Thus, E |= R(c2,c1)
+Therefore, GAMMA, R(c1,c2) |= R(c2,c1)
+
+6.13
+i) {EXISTS x such that NOT phi, ALL x such that phi} is semantically inconsistant
+Seeking to prove such a statement through reductio ad absurdum, let us suppose GAMMA is sem.cons.
+Then let E be a structure (D,-) and a an atribution such that E |= psi and E |= psi2
+so we are saying that i) ((Exists d in D) not phi[a(x d)]) AND ii) (All d' in D) phi[a(x d')])
+
+since E |= phi[a (x d')] we hold that E |= phi[a (x d)] as well, thus we are in contradiction with i)
+Ergo, Gamma is semantically inconsistant
+ii) GAMMA = {not EXIST x phi, phi}
+GAMMA |= absurd
+this is only possible if GAMMA is semantically inconsistant
+so seeking contradictions let us assume it is (semantically) consistant
+Then let E be a structure (D,-) and a an atribution such that E |= (not exist x phi) and E |= phi
+Thus we know E |= NOT (exists d in D) phi[a(x d)] in other words E |= (ALL d in D) NOT phi[a(x d)]
+this is in direct contradition with our supposition that E |= phi
+thus GAMMA is sem inconsistant and GAMMA |= absurd
+iii) ALLx phi, ALLx psi |= ALLx(phi AND psi)
+Let E be a structure (D,-) and a an atribution
+let us suppose E |= Allx phi And E |= Allx psi
+we seek to prove E |= ALLx (phi and psi)
+
+iv) EXISTx phi, ALLx (phi -> psi) |= EXISTx psi
+Let E = (D,- )and a an atribution
+Let us suppose E |= EXISTx phi and E|= ALLx (phi -> psi) we wish to prove E |= EXISTx psi
+from our hypothesis we know i) EXISTd phi[a(x d)] and ii) ALLd' (phi[a(x d')] -> psi[a(x d')]
+from i) we can get cases of phi[a (x d)] that are true and since E |= ALLd' (phi[a(xd')] -> psi[a(xd')]
+it stands to reason that from i) E |= EXISTd psi[a(x d)]
+
+6.13
+a)
+{exists x not phi, all x p} is semantically inconsistant
+let us suppose this set is semantically consistent
+ i) E satisfies psi [a] and ii) 
+
+  
+6.14
+i) "All people are mortal"
+ii) "Sokrates is a person"
+iii) "Sokrates is mortal"
+
+L = ({S},{P,M},N) N(S) = 0; N(P)=N(M)=1
+φ: ∀x (P(x) -> M(x))
+where M is the relation of being mortal
+phi2: P(S)
+where S is the constant Sokrates and P is the relation of being a person
+phi3: M(S)
+
+φ,phi2 ⊨ phi3
+Let us suppose an E structure and a atribution
+Let us suppose i) E |= phi, that is to say All d in D, d in P -> d in M => E |= phi[a(x d)]
+              ii) E |= phi2, that is to say S in P
+Since S is in D, it follows from i) and ii) that S is in M
+Thus E |= M(S)
+THUS phi,phi2 |= phi3
+
+     
